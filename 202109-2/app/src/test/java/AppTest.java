@@ -1,4 +1,3 @@
-import org.checkerframework.checker.units.qual.K;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,82 +73,13 @@ public class AppTest {
     @Test
     public void uniqueShouldWork() {
         outContent.reset();
-        ArrayList<Integer> l = new ArrayList<Integer>(100);
+        int[] t = new int[] {0, 1};
+        int[] nt = new int[] {0, 1};
 
-        l.add(0);
-        l.add(1);
+        int len = App.unique(t);
 
-        App.unique(l);
-
-        ArrayList<Integer> m = new ArrayList<Integer>(100);
-        m.add(0);
-        m.add(1);
-        assertEquals(l, m);
-    }
-    @Test
-    public void uniqueShouldWork4() {
-        outContent.reset();
-        ArrayList<Integer> l = new ArrayList<Integer>(100);
-
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-        l.add(0);
-
-        App.unique(l);
-
-        ArrayList<Integer> m = new ArrayList<Integer>(100);
-        m.add(0);
-        assertEquals(l, m);
-    }
-
-    @Test
-    public void uniqueShouldWork3() {
-        ArrayList<Integer> l = new ArrayList<Integer>(100);
-
-        l.add(0);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(1);
-        l.add(2);
-        l.add(2);
-        l.add(2);
-        l.add(2);
-        l.add(3);
-        l.add(2);
-        l.add(2);
-        l.add(2);
-
-        App.unique(l);
-
-        ArrayList<Integer> r = new ArrayList<Integer>(100);
-
-        r.add(0);
-        r.add(1);
-        r.add(2);
-        r.add(3);
-        r.add(2);
-
-        assertEquals(r, l);
+        assertEquals(len, 2);
+        assertArrayEquals(t, nt);
     }
 
     @Test
@@ -196,5 +126,22 @@ public class AppTest {
         m.add(3);
         m.add(2);
         assertEquals(l, m);
+    }
+
+    @Test
+    public void unique2ShouldWork1() {
+        int[] temp = new int[] { 0, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 0, 0, 0 };
+        int[] temp2 = new int[] { 0, 1, 2, 3, 4, 5, 6, 0, 5, 5, 5, 6, 6, 6, 0, 0, 0 };
+
+        int index = 1;
+        for (int i = 1, len = temp.length; i < len; i++) {
+            if (temp[i] != temp[i - 1]) {
+                temp[index++] = temp[i];
+            }
+        }
+
+        assertEquals(index, 8);
+
+        assertArrayEquals(temp, temp2);
     }
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -7,47 +6,49 @@ import java.util.Scanner;
  */
 public class App {
 
-    static void unique(ArrayList<Integer> l) {
-        for (int i = 0; i < l.size(); i++) {
-            if (i + 1 < l.size() && l.get(i).equals(l.get(i + 1))) {
-                l.remove(i + 1);
-                i--;
+    static int unique(int[] temp) {
+        int index = 1;
+        for (int i = 1, len = temp.length; i < len; i++) {
+            if (temp[i] != temp[i - 1]) {
+                temp[index++] = temp[i];
             }
         }
+
+        return index;
     }
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        int M = 10000;
-        int[] L = new int[M + 10];
+        int a = 10000;
+        int[] b = new int[a + 10];
         int n = scanner.nextInt();
-        ArrayList<Integer> l = new ArrayList<Integer>(n + 100);
+        int[] l = new int[n + 2];
 
-        l.add(0);
+        l[0] = 0;
+        l[n + 1] = 0;
         for (int i = 1; i <= n; i++) {
-            l.add(scanner.nextInt());
+            l[i] = scanner.nextInt();
         }
-        l.add(0);
 
-        unique(l);
+        int len = unique(l);
 
-        for (int i = 1; i < l.size() - 1; i++) {
-            Integer t = l.get(i);
-            Integer t0 = l.get(i - 1);
-            Integer t2 = l.get(i + 1);
+        for (int i = 1; i < len - 1; i++) {
+            int t = l[i];
+            int t0 = l[i - 1];
+            int t2 = l[i + 1];
 
             if (t > t0 && t > t2) {
-                L[t]++;
+                b[t]++;
             }
             if (t < t0 && t < t2) {
-                L[t]--;
+                b[t]--;
             }
         }
 
         int temp = 0, sum = 0;
-        for (int i = M; i > 0; i--) {
-            sum += L[i];
+        for (int i = a; i > 0; i--) {
+            sum += b[i];
             temp = temp > sum ? temp : sum;
         }
 
