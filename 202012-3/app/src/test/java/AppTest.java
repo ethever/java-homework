@@ -36,12 +36,15 @@ public class AppTest {
 
         assertEquals("Y\nY\nN\nN\nY\nN\nY\nY\nY\nY\n", outContent.toString());
         outContent.reset();
+    }
 
-        // InputStream stream2 = new ByteArrayInputStream("3 10\n2 5 8\n".getBytes());
-        // System.setIn(stream2);
-        // App.main(null);
-
-        // assertEquals("15", outContent.toString());
-        // outContent.reset();
+    @Test 
+    public void task2ShouldWorkProperty() {
+        
+        InputStream stream1 = new ByteArrayInputStream("9\nQ /A/B 1030 2060\nC /A/B/1 1024\nC /A/C/1 1024\nQ /A/B 1024 0\nQ /A/C 0 1024\nC /A/B/3 1024\nC /A/B/D/3 1024\nC /A/C/4 1024\nC /A/C/D/4 1024\n".getBytes());
+        System.setIn(stream1);
+        App.main(null);
+        assertEquals("N\nY\nY\nY\nY\nN\nY\nN\nN\n", outContent.toString());
+        outContent.reset();
     }
 }
