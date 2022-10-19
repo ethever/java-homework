@@ -1,7 +1,4 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
 
 public class App {
     public static void main(String[] args) {
@@ -25,6 +22,7 @@ public class App {
                 System.out.println(map.get(fsys.setDir(temp[1], x, y)));
             }
         }
+        scan.close();
     }
 }
 
